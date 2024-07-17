@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <title>Login - Medi</title>
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+  <link href="css/style.css" rel="stylesheet" />
+  <link href="css/responsive.css" rel="stylesheet" />
+</head>
+<body>
+  <div class="hero_area">
+    <header class="header_section">
+      <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg custom_nav-container pt-3">
+          <a class="navbar-brand" href="index.html">
+            <img src="images/logo.png" alt="" />
+            <span></span>
+          </a>
+        </nav>
+      </div>
+    </header>
+
+    <section class="login_section layout_padding">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-md-6">
+            <h2 class="custom_heading text-center mb-5">Iniciar Sesion</h2>
+            <form id="loginForm" onsubmit="return submitForm()">
+              <div class="form-group">
+                <label for="username">Usuario:</label>
+                <input type="text" class="form-control" id="username" name="username" required>
+              </div>
+              <div class="form-group">
+                <label for="password">Contraseña:</label>
+                <input type="password" class="form-control" id="password" name="password" required>
+              </div>
+              <button type="submit" class="btn btn-primary btn-block">Iniciar sesión</button>
+            </form>
+
+            <p class="text-center mt-3">
+              ¿No tienes una cuenta? <a href="formulario.html" id="showRegister">Crear cuenta</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+  <script type="text/javascript" src="js/bootstrap.js"></script>
+  <script>
+    function submitForm() {
+      var usuario = document.getElementById("username").value;
+      var contrasena = document.getElementById("password").value;
+
+      // Validación del lado del cliente
+      if (usuario === "" || contrasena === "") {
+        alert("Por favor completa ambos campos.");
+        return false;
+      }
+
+      // Enviar formulario con AJAX
+      $.ajax({
+        type: "POST",
+        url: "php/login.php",
+        data: $("#loginForm").serialize(),
+        success: function(response) {
+          if (response.trim() === "success") {
+            window.location.href = "dashboard.php";
+          } else {
+            alert("Usuario o contraseña incorrectos.");
+          }
+        },
+        error: function() {
+          alert("Error al procesar la solicitud.");
+        }
+      });
+
+      return false;
+    }
+  </script>
+</body>
+</html>

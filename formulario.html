@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <title>Crear Cuenta - Medi</title>
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+  <link href="css/style.css" rel="stylesheet" />
+  <link href="css/responsive.css" rel="stylesheet" />
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+  <style>
+    .form-group label {
+      font-weight: bold;
+    }
+    .custom-input-width {
+      max-width: 150px;
+    }
+  </style>
+</head>
+<body>
+  <div class="hero_area">
+    <header class="header_section">
+      <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg custom_nav-container pt-3">
+          <a class="navbar-brand" href="index.html">
+            <img src="images/logo.png" alt="" />
+            <span></span>
+          </a>
+        </nav>
+      </div>
+    </header>
+
+    <section class="formulario_section layout_padding">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-md-8">
+            <h2 class="custom_heading text-center mb-4">Crear Cuenta</h2>
+            <form id="registroForm" onsubmit="return validarFormulario()">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="nombre">Nombre completo:</label>
+                    <input type="text" class="form-control" id="nombre" name="nombre" required>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="correo">Correo electrónico:</label>
+                    <input type="email" class="form-control" id="correo" name="correo" required>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label for="dni">DNI:</label>
+                    <input type="text" class="form-control custom-input-width" id="dni" name="dni" required pattern="[0-9]{8}" title="Ingrese un DNI válido de 8 dígitos">
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label for="celular">Celular:</label>
+                    <input type="tel" class="form-control custom-input-width" id="celular" name="celular" required pattern="[0-9]{9}" title="Ingrese un número de celular válido de 9 dígitos">
+                  </div>
+                </div>
+              </div>
+              
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="contrasena">Contraseña:</label>
+                    <input type="password" class="form-control" id="contrasena" name="contrasena" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="La contraseña debe contener al menos 8 caracteres, incluyendo al menos una letra mayúscula, una minúscula y un número">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="confirmarContrasena">Confirmar contraseña:</label>
+                    <input type="password" class="form-control" id="confirmarContrasena" name="confirmarContrasena" required>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <div class="g-recaptcha" data-sitekey="TU_CLAVE_DEL_SITIO"></div>
+              </div>
+              
+              <button type="submit" class="btn btn-primary btn-block mt-4">Crear cuenta</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+  <script type="text/javascript" src="js/bootstrap.js"></script>
+  <script>
+    function validarFormulario() {
+      var contrasena = document.getElementById("contrasena").value;
+      var confirmarContrasena = document.getElementById("confirmarContrasena").value;
+      
+      if (contrasena !== confirmarContrasena) {
+        alert("Las contraseñas no coinciden");
+        return false;
+      }
+      
+      var response = grecaptcha.getResponse();
+      if (response.length === 0) {
+        alert("Por favor, complete el captcha");
+        return false;
+      }
+      
+      return true;
+    }
+  </script>
+</body>
+</html>

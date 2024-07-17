@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <title>Panel de Usuario - Medi</title>
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+  <link href="css/style.css" rel="stylesheet" />
+  <link href="css/responsive.css" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+
+  <style>
+    .navbar-nav {
+      flex-direction: row;
+      justify-content: center;
+      width: 100%;
+    }
+    .navbar-nav .nav-item {
+      margin: 0 15px;
+    }
+    .modal-backdrop {
+      z-index: 1050 !important;
+    }
+    .modal {
+      z-index: 1060 !important;
+    }
+    .modal-content {
+      z-index: 1061 !important;
+    }
+    .profile-data {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    .custom_nav-container {
+      z-index: 1040;
+    }
+  </style>
+</head>
+<body>
+  <div class="hero_area">
+    <header class="header_section">
+      <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg custom_nav-container pt-3">
+          <a class="navbar-brand" href="index.html">
+            <img src="images/logo.png" alt="" />
+            <span>Medi</span>
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="index.html">Regresar</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#" onclick="openProfileModal()">Mi Perfil</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="logout.html">Cerrar sesión</a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <section class="user_dashboard_section layout_padding">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-md-8">
+            <h2 class="custom_heading text-center mb-5">Panel de Usuario</h2>
+            
+            <!-- Cita Pendiente -->
+            <div class="card mb-4">
+              <div class="card-header">
+                Cita Pendiente
+              </div>
+              <div class="card-body">
+                <p><strong>Fecha y hora:</strong> 15/07/2024 10:00 AM</p>
+                <p><strong>Tipo de tratamiento:</strong> Consulta general</p>
+                <button class="btn btn-danger" onclick="confirmCancel()">Cancelar cita</button>
+              </div>
+            </div>
+
+            <!-- Horarios -->
+            <div class="card mb-4">
+              <div class="card-header">
+                Horarios
+              </div>
+              <div class="card-body">
+                <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th>Hora/Día</th>
+                      <th>Lunes</th>
+                      <th>Martes</th>
+                      <th>Miércoles</th>
+                      <th>Jueves</th>
+                      <th>Viernes</th>
+                      <th>Sábado</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                     <!-- Generar filas para cada hora del día -->
+        <tr>
+          <td>9:30 AM - 10:00 AM</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>10:00 AM - 11:00 AM</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>11:00 AM - 12:00 PM</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>12:00 PM - 1:00 PM</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>1:00 PM - 2:00 PM</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>2:00 PM - 3:00 PM</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>3:00 PM - 4:00 PM</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>4:00 PM - 5:00 PM</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>5:00 PM - 6:00 PM</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+         <tr>
+          <td>6:00 PM - 8:00 PM</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+                    <!-- Repite este patrón para las demás horas -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- Reservar Cita -->
+            <div class="card-body">
+                <button class="btn btn-primary btn-block" onclick="openReservationModal()">Reservar Cita</button>
+              </div>
+               <!-- Recordatorio -->
+            <div class="card-body">
+              <button class="btn btn-info btn-block" onclick="toggleReminder()">Activar Recordatorio por Correo</button>
+            </div>
+
+            <!-- Historial Clínico -->
+            <div class="card-body">
+              <button class="btn btn-secondary btn-block" onclick="generateHistory()">Generar Historial Clínico</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Modal de Perfil -->
+  <div id="profileModal" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Mi Perfil</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form id="profileForm">
+            <div class="profile-data">
+              <div>
+                <strong>Nombre:</strong> <span id="profileName">Juan Pérez Diaz</span>
+              </div>
+              <button type="button" class="btn btn-sm btn-primary" onclick="editField('name')">Editar</button>
+            </div>
+            <div class="profile-data">
+              <div>
+                <strong>Correo electrónico:</strong> <span id="profileEmail">juan@gmail.com</span>
+              </div>
+              <button type="button" class="btn btn-sm btn-primary" onclick="editField('email')">Editar</button>
+            </div>
+            <div class="profile-data">
+              <div>
+                <strong>Teléfono:</strong> <span id="profilePhone">+51927345678</span>
+              </div>
+              <button type="button" class="btn btn-sm btn-primary" onclick="editField('phone')">Editar</button>
+            </div>
+            <div class="profile-data">
+              <div>
+                <strong>Dirección:</strong> <span id="profileAddress">Calle Principal 123, Ciudad</span>
+              </div>
+              <button type="button" class="btn btn-sm btn-primary" onclick="editField('address')">Editar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal de Reserva -->
+  <div id="reservationModal" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Reservar Cita</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form id="reservationForm">
+            <div class="form-group">
+              <label for="appointmentDate">Fecha:</label>
+              <input type="date" class="form-control" id="appointmentDate" required>
+            </div>
+            <div class="form-group">
+              <label for="appointmentTime">Hora:</label>
+              <input type="time" class="form-control" id="appointmentTime" required>
+            </div>
+            <div class="form-group">
+              <label for="treatmentType">Tipo de tratamiento:</label>
+              <select class="form-control" id="treatmentType">
+                <option value="consulta">Consulta general</option>
+                <option value="odontologia">Curación</option>
+                 <option value="odontologia">Endodoncia</option>
+                  <option value="odontologia">General</option>
+                
+              </select>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Reservar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Confirmación de Cancelación -->
+  <div id="cancelConfirmation" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Confirmar Cancelación</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>¿Estás seguro de que deseas cancelar la cita?</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+          <button type="button" class="btn btn-danger" onclick="cancelAppointment()">Sí, cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+  <script type="text/javascript" src="js/bootstrap.js"></script>
+  <script>
+
+    function openReservationModal() {
+      $('#reservationModal').modal('show');
+    }
+
+    function openProfileModal() {
+      $('#profileModal').modal('show');
+    }
+
+    function confirmCancel() {
+      $('#cancelConfirmation').modal('show');
+    }
+
+    function cancelAppointment() {
+      $('#cancelConfirmation').modal('hide');
+      alert('Cita cancelada con éxito.');
+    }
+
+    function editField(field) {
+      const currentValue = $(`#profile${field.charAt(0).toUpperCase() + field.slice(1)}`).text();
+      const newValue = prompt(`Editar ${field}:`, currentValue);
+      if (newValue !== null && newValue !== "") {
+        $(`#profile${field.charAt(0).toUpperCase() + field.slice(1)}`).text(newValue);
+      }
+    }
+
+    let reminderActive = false;
+
+    function toggleReminder() {
+      reminderActive = !reminderActive;
+      alert(reminderActive ? 'Recordatorio activado' : 'Recordatorio desactivado');
+      if (reminderActive) {
+        sendReminderEmail();
+      }
+    }
+
+    // Función para enviar recordatorio por correo electrónico
+  function sendReminderEmail() {
+    const email = $('#profileEmail').text();
+
+    // Simulación de envío de correo
+    setTimeout(() => {
+      console.log(`Enviando recordatorio a ${email}`);
+      alert(`Recordatorio enviado a ${email}`);
+    }, 1000); // Simula un retraso de 1 segundo
+  }
+
+  // Función para generar historial clínico
+    async function generateHistory() {
+    alert('Generando historial clínico...');
+
+    // Datos del paciente (esto debería venir de tu base de datos en una implementación real)
+    const patientName = $('#profileName').text();
+    const patientEmail = $('#profileEmail').text();
+    const patientPhone = $('#profilePhone').text();
+    const patientAddress = $('#profileAddress').text();
+
+    // Datos de las citas (esto debería venir de tu base de datos en una implementación real)
+    const citas = [
+      { fecha: '01/01/2023', consulta: 'General' },
+      { fecha: '15/03/2023', consulta: 'Curacion' },
+      { fecha: '21/05/2023', consulta: 'Endodoncia' },
+    ];
+
+    // Crea un nuevo documento PDF
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+
+    // Agrega el título
+    doc.setFontSize(18);
+    doc.text('Historial Clínico', 20, 20);
+
+    // Agrega la información del paciente
+    doc.setFontSize(12);
+    doc.text(`Nombre: ${patientName}`, 20, 30);
+    doc.text(`Correo electrónico: ${patientEmail}`, 20, 40);
+    doc.text(`Teléfono: ${patientPhone}`, 20, 50);
+    doc.text(`Dirección: ${patientAddress}`, 20, 60);
+
+    // Agrega las citas
+    doc.setFontSize(14);
+    doc.text('Citas Realizadas:', 20, 80);
+
+    doc.setFontSize(12);
+    let yPosition = 90;
+    citas.forEach(cita => {
+      doc.text(`Fecha: ${cita.fecha} - Consulta: ${cita.consulta}`, 20, yPosition);
+      yPosition += 10;
+    });
+
+    // Guarda el PDF
+    doc.save('historial_clinico.pdf');
+  }
+
+  $(document).ready(function() {
+    $("#reservationForm").submit(function(e) {
+      e.preventDefault();
+      alert('Cita reservada con éxito.');
+      $('#reservationModal').modal('hide');
+    });
+
+    $("#profileForm").submit(function(e) {
+      e.preventDefault();
+      alert('Perfil actualizado con éxito.');
+      $('#profileModal').modal('hide');
+    });
+
+    $('#profileModal').on('show.bs.modal', function () {
+      $(this).css('z-index', 1100);
+      $('.modal-backdrop').css('z-index', 1050);
+    });
+  });
+
+  $(document).ready(function() {
+    $("#reservationForm").submit(function(e) {
+      e.preventDefault();
+      alert('Cita reservada con éxito.');
+      $('#reservationModal').modal('hide');
+    });
+
+    $("#profileForm").submit(function(e) {
+      e.preventDefault();
+      alert('Perfil actualizado con éxito.');
+      $('#profileModal').modal('hide');
+    });
+
+    $('#profileModal').on('show.bs.modal', function () {
+      $(this).css('z-index', 1100);
+      $('.modal-backdrop').css('z-index', 1050);
+    });
+  });
+
+    $(document).ready(function() {
+      $("#reservationForm").submit(function(e) {
+        e.preventDefault();
+        alert('Cita reservada con éxito.');
+        $('#reservationModal').modal('hide');
+      });
+
+      $("#profileForm").submit(function(e) {
+        e.preventDefault();
+        alert('Perfil actualizado con éxito.');
+        $('#profileModal').modal('hide');
+      });
+
+      $('#profileModal').on('show.bs.modal', function () {
+        $(this).css('z-index', 1100);
+        $('.modal-backdrop').css('z-index', 1050);
+      });
+    });
+  </script>
+</body>
+</html>
